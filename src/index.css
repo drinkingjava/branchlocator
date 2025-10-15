@@ -17,3 +17,16 @@ body,
   width: 100%;
   height: 100%;
 }
+
+.w-full {
+  width: 100%;
+  height: 100%;
+}
+
+.z-index {
+  z-index: 99999;
+}
+
+.auto-search-wrapper {
+  z-index: 9999;
+}
