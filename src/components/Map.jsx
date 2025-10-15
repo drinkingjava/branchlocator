@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import leaflet from "leaflet";
 
+import Autocomplete from "@tomickigrzegorz/autocomplete";
+
+import "../../node_modules/@tomickigrzegorz/autocomplete/dist/css/autocomplete.min.css";
+
 import { geojsonData } from "./geoJSON";
 
 export default function Map() {
@@ -64,13 +68,8 @@ export default function Map() {
   }, [userGeoLocation.latitude, userGeoLocation.longitude]);
 
   useEffect(() => {
-    // minimal configure
     new Autocomplete("search", {
-      // default selects the first item in
-      // the list of results
       selectFirst: true,
-
-      // The number of characters entered should start searching
       howManyCharacters: 2,
 
       onSearch: ({ currentValue }) => {
@@ -88,13 +87,8 @@ export default function Map() {
             });
         });
       },
-      // nominatim GeoJSON format parse this part turns json into the list of
-      // records that appears when you type.
       onResults: ({ currentValue, matches, template }) => {
         const regex = new RegExp(currentValue, "gi");
-        
-        // if the result returns 0 we
-        // show the no results element
         return matches === 0
           ? template
           : matches
@@ -117,20 +111,12 @@ export default function Map() {
         const [lng, lat] = object.geometry.coordinates;
         setUserGeoLocation({ latitude: lat, longitude: lng });
       },
-
-      // get index and data from li element after
-      // hovering over li with the mouse or using
-      // arrow keys ↓ | ↑
-      onSelectedItem: ({ index, element, object }) => {
-        // Useful for when you want preview a location on the map.
-        console.log("onSelectedItem:", index, element, object);
-      },
-
       // the method presents no results element
       noResults: ({ currentValue, template }) =>
         template(`<li>No results found: "${currentValue}"</li>`),
     });
   });
+
   return (
     <div className="w-full">
       <div className="auto-search-wrapper">
