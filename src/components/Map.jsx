@@ -2,9 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import leaflet from "leaflet";
 
 import Autocomplete from "@tomickigrzegorz/autocomplete";
-
 import "../../node_modules/@tomickigrzegorz/autocomplete/dist/css/autocomplete.min.css";
-
 import { geojsonData } from "./geoJSON";
 
 export default function Map() {
@@ -94,7 +92,7 @@ export default function Map() {
           : matches
               .map((element) => {
                 return `
-          <li class="loupe z-index">
+          <li class="loupe">
             <p>
               ${element.properties.display_name.replace(
                 regex,
@@ -118,18 +116,18 @@ export default function Map() {
   });
 
   return (
-    <div className="w-full">
-      <div className="auto-search-wrapper">
+    <div className="w-full h-full">
+      <div className="auto-search-wrapper z-9999 h-1/18">
         <input
           type="text"
           autoComplete="off"
           id="search"
-          className="full-width"
+          className="w-full"
           placeholder="Search and select your location e.g Canal Walk"
           ref={autoCompleteRef}
         />
       </div>
-      <div id="map" ref={mapRef}></div>
+      <div className="h-17/18" id="map" ref={mapRef}></div>
     </div>
   );
 }
