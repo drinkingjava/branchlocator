@@ -1,13 +1,3 @@
-import { data } from "./allbanksSA";
-export const capitecBranches = data["features"].filter(feature => {
-    if(feature.properties.name == "Capitec Bank"){
-        return true
-    }
-    return false
-})
-
-console.log(capitecBranches)
-
 export const geojsonData = {
   type: "FeatureCollection",
   features: [
