@@ -8,7 +8,6 @@ import { geojsonData } from "./geoJSON";
 export default function Map() {
   const mapRef = useRef();
   const userMarkerRef = useRef();
-  const autoCompleteRef = useRef();
 
   const [userGeoLocation, setUserGeoLocation] = useState({
     latitude: -33.8921342,
@@ -124,7 +123,6 @@ export default function Map() {
           id="search"
           className="w-full"
           placeholder="Search and select your location e.g Canal Walk"
-          ref={autoCompleteRef}
         />
       </div>
       <div className="h-17/18" id="map" ref={mapRef}></div>
